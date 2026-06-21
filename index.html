@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Combat Strength Program — Full Body 2×/Week</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Combat">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0d0d0d; --dark: #131313; --card: #161616; --card2: #1a1a1a;
+    --line: #232323; --line-soft: #1c1c1c;
+    --red: #c0392b; --red-bright: #e0473a; --gold: #c9a84c;
+    --white: #f0ede8; --grey: #6e6e6e; --light: #a8a8a8;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black); color: var(--white); font-family: 'Inter', sans-serif; font-size: 15px;
+    line-height: 1.6; padding: 0 0 64px; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ════════ HERO ════════ */
+  .hero {
+    position: relative; padding: 64px 24px 48px; text-align: center; overflow: hidden;
+    background: var(--black);
+  }
+  .hero::before {
+    content: ''; position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 400px;
+    background: radial-gradient(ellipse, rgba(192,57,43,.16) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-content { position: relative; }
+  .hero-label {
+    font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--grey);
+    margin-bottom: 14px; font-weight: 500;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, sans-serif; font-size: clamp(56px, 14vw, 92px); letter-spacing: .5px;
+    line-height: .92; color: var(--white);
+  }
+  .hero h1 span { color: var(--red-bright); }
+  .hero-sub { margin-top: 14px; color: var(--light); font-size: 14px; }
+  .hero-meta {
+    margin-top: 28px; display: flex; flex-wrap: wrap; justify-content: center; gap: 0;
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden; max-width: 560px; margin-left: auto; margin-right: auto;
+  }
+  .hero-meta-item { flex: 1; min-width: 96px; padding: 12px 16px; text-align: center; border-right: 1px solid var(--line); }
+  .hero-meta-item:last-child { border-right: none; }
+  @media (max-width: 560px) {
+    .hero-meta { border-radius: 10px; }
+    .hero-meta-item { flex: 1 1 33.33%; min-width: 0; border-bottom: 1px solid var(--line); }
+    .hero-meta-item:nth-child(3n) { border-right: none; }
+    .hero-meta-item:nth-last-child(-n+3) { border-bottom: none; }
+  }
+  .hero-meta-val { font-family: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, sans-serif; font-size: 20px; color: var(--gold); display: block; line-height: 1; }
+  .hero-meta-label { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--grey); margin-top: 4px; display: block; }
+
+  /* ════════ LAYOUT ════════ */
+  .container { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+  .section { margin-top: 64px; scroll-margin-top: 24px; }
+  .section:first-of-type { margin-top: 48px; }
+  .eyebrow {
+    font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--red-bright);
+    font-weight: 600; margin-bottom: 4px; display: block;
+  }
+  .section-title { font-family: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, sans-serif; font-size: 34px; letter-spacing: .5px; color: var(--white); margin-bottom: 24px; text-transform: uppercase; line-height: 1; }
+  .section-title.compact { margin-bottom: 16px; }
+
+  /* ════════ TOC — refined list, not boxed pills ════════ */
+  .toc-list { list-style: none; }
+  .toc-list li { border-bottom: 1px solid var(--line-soft); }
+  .toc-list li:last-child { border-bottom: none; }
+  .toc-list a {
+    display: flex; align-items: center; justify-content: space-between; padding: 14px 2px;
+    color: var(--light); text-decoration: none; font-size: 14.5px; transition: color .15s, padding-left .15s;
+  }
+  .toc-list a:hover { color: var(--white); padding-left: 6px; }
+  .toc-list a .toc-left { display: flex; align-items: baseline; gap: 16px; }
+  .toc-num { font-family: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, sans-serif; font-size: 14px; color: var(--grey); min-width: 20px; }
+  .toc-list a:hover .toc-num { color: var(--red-bright); }
+  .toc-arrow { color: var(--grey); font-size: 13px; transition: transform .15s; }
+  .toc-list a:hover .toc-arrow { transform: translateX(3px); color: var(--light); }
+
+  /* ════════ WHY BOX — quiet, no border ════════ */
+  .why-box { color: var(--light); font-size: 13.5px; line-height: 1.85; }
+  .why-box p + p { margin-top: 12px; }
+  .why-box strong { color: var(--white); font-weight: 600; }
+
+  /* ════════ WEEK GRID — minimal, no heavy cards ════════ */
+  .week-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 1px; background: var(--line); border-radius: 10px; overflow: hidden; margin-top: 4px; }
+  @media (max-width: 600px) { .week-grid { grid-template-columns: repeat(4, 1fr); } }
+  .day-card { background: var(--card); padding: 14px 6px; text-align: center; }
+  .day-card.active { background: #190d0c; }
+  .day-card.combat { background: #161205; }
+  .day-name { font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--grey); display: block; margin-bottom: 6px; }
+  .day-type { font-size: 11.5px; font-weight: 600; color: var(--light); line-height: 1.3; }
+  .day-card.active .day-type { color: var(--red-bright); }
+  .day-card.combat .day-type { color: var(--gold); }
+
+  .note { font-size: 12.5px; color: var(--grey); margin-top: 16px; line-height: 1.7; }
+  .note strong { color: var(--light); }
+
+  /* ════════ SESSION CARD — one merged container, internal dividers only ════════ */
+  .session-card {
+    border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-top: 8px;
+  }
+  .session-block { border-bottom: 1px solid var(--line); }
+  .session-block:last-child { border-bottom: none; }
+  .session-block-label {
+    padding: 16px 22px 0; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--grey); font-weight: 600; display: flex; justify-content: space-between; align-items: center;
+  }
+  .session-block-label .dur { color: var(--grey); font-weight: 400; letter-spacing: 1px; font-size: 10px; }
+  .session-block-label.accent { color: var(--red-bright); }
+
+  /* Warm-up / cool-down — quiet list, no card */
+  .quiet-list { padding: 10px 22px 18px; }
+  .quiet-list li { list-style: none; display: flex; justify-content: space-between; padding: 7px 0; font-size: 13.5px; color: var(--light); border-bottom: 1px solid var(--line-soft); }
+  .quiet-list li:last-child { border-bottom: none; }
+  .quiet-list li span { color: var(--grey); font-size: 12px; white-space: nowrap; padding-left: 12px; }
+
+  /* ════════ EXERCISE LIST — card-free rows, not table-in-box ════════ */
+  .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; padding: 4px 22px 18px; }
+  .table-wrap::-webkit-scrollbar { height: 3px; }
+  .table-wrap::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+
+  .ex-table { width: 100%; border-collapse: collapse; min-width: 520px; }
+  .ex-table th {
+    font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; color: var(--grey);
+    padding: 0 0 10px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--line);
+  }
+  .ex-table td { padding: 14px 0; border-bottom: 1px solid var(--line-soft); vertical-align: top; font-size: 13.5px; }
+  .ex-table td:not(:first-child) { padding-left: 18px; }
+  .ex-table tr:last-child td { border-bottom: none; }
+  .ex-table td.why-col { min-width: 220px; max-width: 290px; color: var(--grey); font-size: 12.5px; line-height: 1.65; }
+  .ex-name { font-weight: 600; color: var(--white); display: block; font-size: 14px; }
+  .ex-note { font-size: 12px; color: var(--grey); margin-top: 3px; display: block; line-height: 1.5; }
+  .tag-num { font-variant-numeric: tabular-nums; font-weight: 600; color: var(--white); white-space: nowrap; font-size: 13.5px; }
+  .tag-rest { color: var(--light); white-space: nowrap; font-size: 13px; }
+  .sr-stack { display: inline-flex; flex-direction: column; gap: 0; min-width: 48px; }
+  .sr-sets { font-family: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, sans-serif; font-size: 15.5px; letter-spacing: .3px; color: var(--white); line-height: 1.1; }
+  .sr-reps { font-size: 9.5px; letter-spacing: .8px; text-transform: uppercase; color: var(--grey); margin-top: 2px; line-height: 1.1; }
+
+  /* ════════ COMPARISON TABLE ════════ */
+  .compare-table { width: 100%; border-collapse: collapse; }
+  .compare-table th {
+    font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--grey);
+    padding: 10px 14px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--line);
+  }
+  .compare-table td { padding: 11px 14px; font-size: 13px; color: var(--light); border-bottom: 1px solid var(--line-soft); }
+  .compare-table tr:last-child td { border-bottom: none; }
+  .compare-table td:first-child { color: var(--white); font-weight: 600; }
+
+  /* ════════ MOBILITY GROUPS ════════ */
+  .mob-group { margin-bottom: 32px; }
+  .mob-day-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--red-bright);
+    font-weight: 600; margin-bottom: 4px;
+  }
+  .mob-day-sub { font-size: 12.5px; color: var(--grey); margin-bottom: 18px; }
+  .formula-strip {
+    border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; text-align: center; margin-bottom: 18px;
+  }
+  .formula-text { font-family: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, sans-serif; font-size: 18px; color: var(--gold); letter-spacing: .3px; line-height: 1.4; }
+
+  /* ════════ PROGRESSION TABLE ════════ */
+  .prog-table { width: 100%; border-collapse: collapse; }
+  .prog-table th { font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--grey); padding: 10px 14px; text-align: left; font-weight: 600; border-bottom: 1px solid var(--line); }
+  .prog-table td { padding: 11px 14px; font-size: 13px; color: var(--light); border-bottom: 1px solid var(--line-soft); }
+  .prog-table tr:last-child td { border-bottom: none; }
+
+  .phase-row { display: flex; gap: 0; margin-top: 18px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .phase-col { flex: 1; padding: 18px 16px; border-right: 1px solid var(--line); }
+  .phase-col:last-child { border-right: none; }
+  .phase-num { font-size: 10px; color: var(--grey); letter-spacing: 1px; }
+  .phase-kg { font-family: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, sans-serif; font-size: 26px; color: var(--white); margin-top: 4px; }
+  .phase-time { font-size: 11px; color: var(--grey); margin-top: 4px; }
+
+  /* ════════ NUTRITION ════════ */
+  .nutr-list { border: 1px solid var(--line); border-radius: 12px; padding: 6px 22px; }
+  .nutr-row { display: flex; justify-content: space-between; align-items: baseline; padding: 13px 0; border-bottom: 1px solid var(--line-soft); gap: 16px; }
+  .nutr-row:last-child { border-bottom: none; }
+  .nutr-row .label { color: var(--light); font-size: 13.5px; }
+  .nutr-row .val { color: var(--white); font-weight: 600; font-size: 13.5px; text-align: right; }
+
+  /* ════════ RULES ════════ */
+  .rules-list { border: 1px solid var(--line); border-radius: 12px; }
+  .rules-list li { list-style: none; display: flex; gap: 14px; padding: 14px 20px; border-bottom: 1px solid var(--line-soft); font-size: 13.5px; color: var(--light); line-height: 1.5; align-items: flex-start; }
+  .rules-list li:last-child { border-bottom: none; }
+  .rule-marker { color: var(--red-bright); font-size: 11px; flex-shrink: 0; margin-top: 4px; font-weight: 700; }
+
+  /* ════════ OBJECTIVE ════════ */
+  .obj-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border-radius: 12px; overflow: hidden; margin-top: 18px; }
+  @media (max-width: 560px) { .obj-grid { grid-template-columns: 1fr; } }
+  .obj-col { background: var(--card); padding: 18px 20px; }
+  .obj-col-title { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 12px; }
+  .obj-col.do .obj-col-title { color: var(--red-bright); }
+  .obj-col.dont .obj-col-title { color: var(--grey); }
+  .obj-col ul { list-style: none; }
+  .obj-col li { font-size: 12.5px; color: var(--light); padding: 5px 0; line-height: 1.5; }
+  .obj-col.dont li { color: var(--grey); }
+
+  /* ════════ SCIENCE ════════ */
+  .sci-item { padding: 28px 0; border-bottom: 1px solid var(--line); }
+  .sci-item:last-child { border-bottom: none; }
+  .sci-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 10px; }
+  .sci-num { font-family: 'Bebas Neue', 'Oswald', 'Arial Narrow', Impact, sans-serif; font-size: 32px; color: var(--line); line-height: 1; }
+  .sci-title-group { flex: 1; }
+  .sci-title { font-size: 16px; font-weight: 700; color: var(--white); }
+  .sci-sub { font-size: 11.5px; color: var(--grey); margin-top: 2px; }
+  .sci-formula {
+    font-family: 'SF Mono', Consolas, monospace; font-size: 15px; color: var(--gold);
+    background: var(--card); display: inline-block; padding: 7px 14px; border-radius: 7px; margin: 10px 0 14px;
+  }
+  .sci-body { font-size: 13.5px; color: var(--light); line-height: 1.8; }
+  .sci-bullets { margin-top: 12px; }
+  .sci-bullets li { list-style: none; font-size: 12.5px; color: var(--grey); padding: 4px 0; padding-left: 16px; position: relative; line-height: 1.5; }
+  .sci-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--red-bright); }
+
+  /* ════════ LOG TABLE ════════ */
+  .log-week-input {
+    display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 18px; padding: 16px 20px;
+    border: 1px solid var(--line); border-radius: 14px;
+  }
+  .log-input-group { display: flex; align-items: baseline; gap: 10px; flex: 1; min-width: 140px; }
+  .log-input-label { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--grey); font-weight: 600; white-space: nowrap; }
+  .log-input-line { flex: 1; border-bottom: 1px solid var(--line); height: 18px; min-width: 60px; }
+  .log-input-line.short { flex: 0 0 70px; }
+  .log-input-unit { font-size: 11px; color: var(--grey); }
+
+  .log-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .log-table th { background: rgba(0,0,0,.2); color: var(--grey); padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; white-space: nowrap; font-weight: 600; }
+  .log-table td { border-bottom: 1px solid var(--line-soft); padding: 10px 12px; color: var(--light); vertical-align: top; min-width: 70px; height: 28px; }
+  .log-table tr:last-child td { border-bottom: none; }
+  .log-table td.ex-cell { color: var(--white); font-weight: 500; min-width: 150px; }
+  .print-btn {
+    background: var(--white); border: none; border-radius: 8px; color: #000; font-size: 12px; font-weight: 600;
+    padding: 11px 22px; cursor: pointer; letter-spacing: .5px;
+  }
+
+  .divider { height: 1px; background: var(--line); margin: 0; }
+  .section-gap { height: 1px; background: var(--line); margin: 64px 0 0; }
+
+  footer { margin-top: 80px; padding: 28px; text-align: center; font-size: 10px; letter-spacing: 2px; color: #3a3a3a; text-transform: uppercase; border-top: 1px solid var(--line); }
+
+  @media print {
+    body { background: #fff !important; color: #000 !important; padding: 0; font-size: 11px; }
+    .no-print { display: none !important; }
+    .hero, .toc-list, .why-box, .note, .formula-strip, .obj-grid, .rules-list, .phase-row, .sci-item { display: none !important; }
+    .log-section { margin-top: 0; page-break-before: always; }
+    .session-card { box-shadow: none !important; border: 1px solid #999 !important; }
+    .session-block-label { color: #000 !important; }
+    .session-block-label.accent { color: #c0392b !important; }
+    .log-table th { background: #eee !important; color: #000 !important; border-bottom: 1px solid #999 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .log-table td { border-bottom: 1px solid #ccc !important; color: #000 !important; background: #fff !important; }
+    .log-table td.ex-cell { background: #f5f5f5 !important; font-weight: 600 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section-title, .eyebrow { color: #000 !important; }
+    footer { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <p class="hero-label">Combat Strength Program</p>
+    <h1>BUILT TO<br><span>FIGHT</span></h1>
+    <p class="hero-sub">181cm · 61kg → 74–77kg</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><span class="hero-meta-val">2×</span><span class="hero-meta-label">Gym / week</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-val">2×</span><span class="hero-meta-label">Striking / week</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-val">60m</span><span class="hero-meta-label">Per session</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-val">74–77</span><span class="hero-meta-label">Target kg</span></div>
+      <div class="hero-meta-item"><span class="hero-meta-val">18mo~</span><span class="hero-meta-label">Timeline</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- TABLE OF CONTENTS -->
+  <div class="section" id="toc">
+    <span class="eyebrow">Index</span>
+    <h2 class="section-title compact">Table of Contents</h2>
+    <ul class="toc-list">
+      <li><a href="#schedule"><span class="toc-left"><span class="toc-num">01</span>Weekly Schedule</span><span class="toc-arrow">→</span></a></li>
+      <li><a href="#gym-a"><span class="toc-left"><span class="toc-num">02</span>Gym A</span><span class="toc-arrow">→</span></a></li>
+      <li><a href="#gym-b"><span class="toc-left"><span class="toc-num">03</span>Gym B</span><span class="toc-arrow">→</span></a></li>
+      <li><a href="#comparison"><span class="toc-left"><span class="toc-num">04</span>Compare Sessions</span><span class="toc-arrow">→</span></a></li>
+      <li><a href="#mobility"><span class="toc-left"><span class="toc-num">05</span>Mobility & Flexibility</span><span class="toc-arrow">→</span></a></li>
+      <li><a href="#progression"><span class="toc-left"><span class="toc-num">06</span>How to Progress</span><span class="toc-arrow">→</span></a></li>
+      <li><a href="#nutrition"><span class="toc-left"><span class="toc-num">07</span>Fuel & Recovery</span><span class="toc-arrow">→</span></a></li>
+      <li><a href="#rules"><span class="toc-left"><span class="toc-num">08</span>Guidelines</span><span class="toc-arrow">→</span></a></li>
+      <li><a href="#objective"><span class="toc-left"><span class="toc-num">09</span>Purpose</span><span class="toc-arrow">→</span></a></li>
+      <li><a href="#science"><span class="toc-left"><span class="toc-num">10</span>Science of Size: Why it Matters</span><span class="toc-arrow">→</span></a></li>
+      <li><a href="#weekly-log"><span class="toc-left"><span class="toc-num">11</span>Weekly Log</span><span class="toc-arrow">→</span></a></li>
+    </ul>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- WHY FULL BODY -->
+  <div class="section">
+    <div class="why-box">
+      <p><strong>Why full body instead of upper/lower:</strong> At only 2 gym sessions per week, a split means each muscle group gets trained once per week — suboptimal for hypertrophy. Full body means every major muscle is stimulated twice per week, which research consistently shows produces significantly more muscle growth at the same total volume.</p>
+      <p><strong>Why 6–7 exercises maximum:</strong> More exercises means more fatigue and reduced recovery for Tuesday kickboxing and Sunday boxing. Every exercise here earns its place. Simple, repeatable, recovery-safe for 8–12 weeks.</p>
+    </div>
+  </div>
+
+  <!-- WEEKLY SCHEDULE -->
+  <div class="section" id="schedule">
+    <span class="eyebrow">01 — Schedule</span>
+    <h2 class="section-title compact">Your Week</h2>
+    <div class="week-grid">
+      <div class="day-card"><span class="day-name">Mon</span><span class="day-type">Mobility</span></div>
+      <div class="day-card combat"><span class="day-name">Tue</span><span class="day-type">Kickboxing</span></div>
+      <div class="day-card active"><span class="day-name">Wed</span><span class="day-type">Gym A</span></div>
+      <div class="day-card"><span class="day-name">Thu</span><span class="day-type">Rest</span></div>
+      <div class="day-card active"><span class="day-name">Fri</span><span class="day-type">Gym B</span></div>
+      <div class="day-card"><span class="day-name">Sat</span><span class="day-type">Mobility</span></div>
+      <div class="day-card combat"><span class="day-name">Sun</span><span class="day-type">Boxing ⚠</span></div>
+    </div>
+    <p class="note">Both sessions are full body. Wednesday is hinge-dominant for legs, Friday is squat-dominant. Pressing alternates flat and incline. Wednesday uses pull-ups as the pull; Friday uses chest-supported row.</p>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- GYM A — WEDNESDAY -->
+  <div class="section" id="gym-a">
+    <span class="eyebrow">02 — Wednesday</span>
+    <h2 class="section-title compact">Gym A — Hinge Day</h2>
+
+    <div class="session-card">
+
+      <div class="session-block">
+        <div class="session-block-label">Warm-Up <span class="dur">5 min</span></div>
+        <ul class="quiet-list">
+          <li>Treadmill incline walk or cycle <span>2 min</span></li>
+          <li>Leg swings front-to-back <span>10 each leg</span></li>
+          <li>Leg swings side-to-side <span>10 each leg</span></li>
+          <li>Bodyweight squat <span>15 reps</span></li>
+          <li>Glute bridge <span>15 reps</span></li>
+        </ul>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label accent">Legs — Hinge Focus <span class="dur">~20 min</span></div>
+        <div class="table-wrap">
+          <table class="ex-table">
+            <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ex-name">Trap Bar Deadlift</span><span class="ex-note">Stand inside bar, drive through heels, hips and bar rise together — the king of this program</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">4 SETS</span><span class="sr-reps">5</span></span></td>
+                <td><span class="tag-rest">3 min</span></td>
+                <td class="why-col">Primary total-body strength movement. Hip drive, posterior chain, upper back, grip — everything fires at once. Foundation of punching and kicking power</td>
+              </tr>
+              <tr>
+                <td><span class="ex-name">Bulgarian Split Squat</span><span class="ex-note">Rear foot on bench, lower straight down, front shin stays vertical</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">3 SETS</span><span class="sr-reps">8/leg</span></span></td>
+                <td><span class="tag-rest">90 sec</span></td>
+                <td class="why-col">Single-leg strength and balance — every kick and pivot happens on one leg. Corrects imbalances and protects the knees long term</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label accent">Push <span class="dur">~10 min</span></div>
+        <div class="table-wrap">
+          <table class="ex-table">
+            <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ex-name">Flat Dumbbell Bench Press</span><span class="ex-note">Flat bench, DBs at chest, press up and slightly in — drop them to floor if you fail</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">4 SETS</span><span class="sr-reps">6–8</span></span></td>
+                <td><span class="tag-rest">2 min</span></td>
+                <td class="why-col">Maximum chest, shoulder, and tricep mass and strength. Primary horizontal push. Powers your cross and hooks</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label accent">Pull <span class="dur">~10 min</span></div>
+        <div class="table-wrap">
+          <table class="ex-table">
+            <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ex-name">Pull-Ups</span><span class="ex-note">Full hang, chin over bar, lower with control. Add weight between feet when bodyweight is easy</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">4 SETS</span><span class="sr-reps">6–10</span></span></td>
+                <td><span class="tag-rest">2 min</span></td>
+                <td class="why-col">Lats, upper back, grip, biceps, shoulder stability. Best upper-body exercise for a combat athlete. Clinch strength, punch reset, posture</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label" style="color:#5daf5d">Armour — Neck & Grip <span class="dur">~7 min</span></div>
+        <div class="table-wrap">
+          <table class="ex-table">
+            <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ex-name">Neck Flexion</span><span class="ex-note">Lie on back, head off bench, lower and raise slowly — never jerk</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">15</span></span></td>
+                <td><span class="tag-rest">45 sec</span></td>
+                <td class="why-col">Front neck — stops head snapping back on impact. Primary KO protection mechanism</td>
+              </tr>
+              <tr>
+                <td><span class="ex-name">Farmer's Carry</span><span class="ex-note">Submaximal — challenging but stop before grip fails. Perfect posture throughout</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">3 SETS</span><span class="sr-reps">30–40m</span></span></td>
+                <td><span class="tag-rest">60 sec</span></td>
+                <td class="why-col">Grip, trap density, forearm, core stability. Kept submaximal to protect CNS recovery for combat sessions</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label">⚡ Explosive Finisher — optional <span class="dur">~5 min</span></div>
+        <div class="table-wrap">
+          <table class="ex-table">
+            <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ex-name">Kettlebell Swing</span><span class="ex-note">Option A — hinge hard, drive hips explosively, KB floats to chest height. Not a squat</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">3 SETS</span><span class="sr-reps">10</span></span></td>
+                <td><span class="tag-rest">60 sec</span></td>
+                <td class="why-col">Explosive hip extension — direct carryover to kick power and punch drive</td>
+              </tr>
+              <tr>
+                <td><span class="ex-name">Medicine Ball Chest Throw</span><span class="ex-note">Option B — hold at chest, explosive push throw into wall, catch and repeat</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">3 SETS</span><span class="sr-reps">5</span></span></td>
+                <td><span class="tag-rest">60 sec</span></td>
+                <td class="why-col">Explosive horizontal push. Use when KB not available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label">Cool-Down <span class="dur">4 min</span></div>
+        <ul class="quiet-list">
+          <li>Couch stretch — hip flexors <span>45 sec / side</span></li>
+          <li>Hamstring floor stretch <span>45 sec / side</span></li>
+          <li>Pigeon pose or figure-4 glute stretch <span>45 sec / side</span></li>
+          <li>Deep breathing, child's pose <span>60 sec</span></li>
+        </ul>
+      </div>
+
+    </div>
+    <p class="note">Optional finisher — skip if fatigued from combat sessions. Pick ONE option.</p>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- GYM B — FRIDAY -->
+  <div class="section" id="gym-b">
+    <span class="eyebrow">03 — Friday</span>
+    <h2 class="section-title compact">Gym B — Squat Day</h2>
+
+    <div class="session-card">
+
+      <div class="session-block">
+        <div class="session-block-label">Warm-Up <span class="dur">5 min</span></div>
+        <ul class="quiet-list">
+          <li>Treadmill incline walk or cycle <span>2 min</span></li>
+          <li>Arm circles small to large <span>20 each direction</span></li>
+          <li>Band pull-aparts or towel pull-aparts <span>20 reps</span></li>
+          <li>Slow push-ups <span>10 reps</span></li>
+          <li>Scapular pulls (dead hang) <span>10 reps</span></li>
+        </ul>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label accent">Legs — Squat Focus <span class="dur">~18 min</span></div>
+        <div class="table-wrap">
+          <table class="ex-table">
+            <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ex-name">Hack Squat / Leg Press / Smith Machine</span><span class="ex-note">Choose based on gym availability. All safe to fail. Full depth, controlled descent</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">4 SETS</span><span class="sr-reps">8–10</span></span></td>
+                <td><span class="tag-rest">2 min</span></td>
+                <td class="why-col">Primary quad and leg volume. Moderate reps for size. No dumbbell limit as you get stronger — powers footwork, stance, and kicking base</td>
+              </tr>
+              <tr>
+                <td><span class="ex-name">Dumbbell Romanian Deadlift</span><span class="ex-note">Hinge at hips, soft knees, lower until hamstrings are fully stretched</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">3 SETS</span><span class="sr-reps">10</span></span></td>
+                <td><span class="tag-rest">90 sec</span></td>
+                <td class="why-col">Hamstring and glute development with lower spinal load than trap bar. Used here as an accessory — not a maximal hinge</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label accent">Push <span class="dur">~10 min</span></div>
+        <div class="table-wrap">
+          <table class="ex-table">
+            <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ex-name">Incline Dumbbell Press</span><span class="ex-note">45° bench, press up and slightly in, lower with control</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">4 SETS</span><span class="sr-reps">8–10</span></span></td>
+                <td><span class="tag-rest">2 min</span></td>
+                <td class="why-col">Upper chest and front delt volume. Complements Wednesday's flat press — together they cover the full chest</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label accent">Pull <span class="dur">~8 min</span></div>
+        <div class="table-wrap">
+          <table class="ex-table">
+            <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ex-name">Chest-Supported DB Row / Barbell Row</span><span class="ex-note">Chest-supported: lie chest-down on incline bench, row DBs to hips. Barbell: hinge forward, row to lower ribs. Pick one — both work the same pattern</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">4 SETS</span><span class="sr-reps">10</span></span></td>
+                <td><span class="tag-rest">90 sec</span></td>
+                <td class="why-col">Mid-back, rear delts, volume-biased. Chest-supported removes lower back load — smarter heading into Sunday boxing. Barbell row works if your back is fresh and you want more total-body tension</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label" style="color:#5daf5d">Armour — Neck & Forearms <span class="dur">~8 min</span></div>
+        <div class="table-wrap">
+          <table class="ex-table">
+            <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ex-name">Lateral Neck Raise</span><span class="ex-note">Head off side of bench, raise toward shoulder, both sides</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">12/side</span></span></td>
+                <td><span class="tag-rest">30 sec</span></td>
+                <td class="why-col">Side-neck thickness — 360° protection alongside Wednesday's flexion work. Capped at 2 neck exercises per week</td>
+              </tr>
+              <tr>
+                <td><span class="ex-name">Hammer Curl</span><span class="ex-note">Neutral grip, controlled curl up, slow lower — no swinging</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">3 SETS</span><span class="sr-reps">10–12</span></span></td>
+                <td><span class="tag-rest">45 sec</span></td>
+                <td class="why-col">Brachialis and forearm thickness. Grip durability and impact absorption on blocking</td>
+              </tr>
+              <tr>
+                <td><span class="ex-name">Wrist Curl + Reverse</span><span class="ex-note">Forearms on thighs — palms up first, then palms down. Light weight, controlled</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">15 each</span></span></td>
+                <td><span class="tag-rest">30 sec</span></td>
+                <td class="why-col">Forearm flexors and extensors — wrist stability on impact, prevents punching injuries</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label">⚡ Explosive Finisher — optional <span class="dur">~5 min</span></div>
+        <div class="table-wrap">
+          <table class="ex-table">
+            <thead><tr><th>Exercise</th><th>Sets × Reps</th><th>Rest</th><th>Why it matters</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="ex-name">Medicine Ball Rotational Throw</span><span class="ex-note">Option A — stand side-on to wall, rotate and throw hard, catch or let bounce</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">3 SETS</span><span class="sr-reps">5/side</span></span></td>
+                <td><span class="tag-rest">60 sec</span></td>
+                <td class="why-col">Rotational power for hooks, crosses and kicks. Trains the exact same chain as your best punches</td>
+              </tr>
+              <tr>
+                <td><span class="ex-name">Kettlebell Swing</span><span class="ex-note">Option B — hinge hard, drive hips, float KB to chest height</span></td>
+                <td><span class="sr-stack"><span class="sr-sets">3 SETS</span><span class="sr-reps">10</span></span></td>
+                <td><span class="tag-rest">60 sec</span></td>
+                <td class="why-col">Explosive hip power. Use when no med ball available</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="session-block">
+        <div class="session-block-label">Cool-Down <span class="dur">4 min</span></div>
+        <ul class="quiet-list">
+          <li>Doorway chest stretch <span>45 sec</span></li>
+          <li>Cross-body shoulder stretch <span>45 sec / side</span></li>
+          <li>Lat stretch (hang or reach overhead) <span>45 sec</span></li>
+          <li>Wrist flexor and extensor stretch <span>30 sec each</span></li>
+          <li>Neck side tilt, slow and gentle <span>20 sec / side</span></li>
+        </ul>
+      </div>
+
+    </div>
+    <p class="note">Optional finisher — skip if fatigued heading into Sunday boxing. Pick ONE option.</p>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- SESSION COMPARISON -->
+  <div class="section" id="comparison">
+    <span class="eyebrow">04 — At a Glance</span>
+    <h2 class="section-title compact">Session Comparison</h2>
+    <div class="table-wrap" style="padding:0">
+      <table class="compare-table" style="min-width:480px">
+        <thead><tr><th>Movement</th><th>Wednesday · Strength</th><th>Friday · Volume</th></tr></thead>
+        <tbody>
+          <tr><td>Legs Primary</td><td>Trap Bar Deadlift 4×5</td><td>Hack Squat / Leg Press 4×8–10</td></tr>
+          <tr><td>Legs Secondary</td><td>Bulgarian Split Squat 3×8/leg</td><td>DB Romanian Deadlift 3×10</td></tr>
+          <tr><td>Push</td><td>Flat DB Bench Press 4×6–8</td><td>Incline DB Press 4×8–10</td></tr>
+          <tr><td>Pull</td><td>Pull-Ups 4×6–10</td><td>Chest-Supported / Barbell Row 4×10</td></tr>
+          <tr><td>Neck</td><td>Neck Flexion 2×15</td><td>Lateral Neck Raise 2×12/side</td></tr>
+          <tr><td>Grip</td><td>Farmer's Carry 3×30–40m</td><td>—</td></tr>
+          <tr><td>Forearms</td><td>—</td><td>Hammer Curl + Wrist Curls</td></tr>
+          <tr><td>Finisher</td><td>KB Swing / MB Chest Throw</td><td>MB Rotational Throw / KB Swing</td></tr>
+          <tr><td>Total exercises</td><td style="color:var(--gold);font-weight:700">6</td><td style="color:var(--gold);font-weight:700">7</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="why-box" style="margin-top:20px">
+      <p><strong>What each session targets:</strong> Wednesday is your strength day — heavier loads, lower reps, built around the trap bar deadlift. This is where your nervous system learns to produce maximum force. Friday is your volume day — moderate reps, more total work, built around the squat. This is where most muscle size gets built. Together they cover every pattern twice a week without repeating the same lift.</p>
+      <p style="margin-top:10px"><strong>Why neck and forearms get direct work, not biceps:</strong> Every exercise here is chosen for transfer, not looks. A stronger neck resists the head-snap that causes a KO — structural protection, not vanity. Forearms determine grip, clinch control, and wrist stability on impact. Biceps already get plenty of indirect work from pull-ups and rows — isolating them further adds fatigue without adding fight performance.</p>
+    </div>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- MOBILITY -->
+  <div class="section" id="mobility">
+    <span class="eyebrow">05 — Mon & Sat</span>
+    <h2 class="section-title compact">Fighter Mobility System</h2>
+
+    <div class="formula-strip">
+      <div class="formula-text">Kick Height = Mobility + End Range Strength + Balance + Hip Control</div>
+    </div>
+    <div class="why-box" style="margin-bottom:28px">
+      <p><strong>Why active flexibility matters beyond fighting:</strong> Range you can hold under your own strength keeps joints healthy long-term — most people lose mobility not from tight tissue, but from never loading the end range, so the nervous system shuts it down.</p>
+      <p style="margin-top:10px"><strong>Stretching alone does NOT create head kicks.</strong> You need active flexibility — the ability to hold your kick at height, not just passively reach it.</p>
+    </div>
+
+    <div class="mob-group">
+      <div class="mob-day-label">Monday — Range & Head Kicks</div>
+      <div class="mob-day-sub">15–20 min · Recovery from Sunday boxing + building kick height</div>
+
+      <div class="session-card">
+        <div class="session-block">
+          <div class="session-block-label">Dynamic Warm-Up <span class="dur">~5 min</span></div>
+          <div class="table-wrap">
+            <table class="ex-table">
+              <tbody>
+                <tr><td><span class="ex-name">Leg Swings Front-to-Back</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">15/leg</span></span></td><td class="why-col">Primes hip flexors and hamstrings for kicking range</td></tr>
+                <tr><td><span class="ex-name">Leg Swings Side-to-Side</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">15/leg</span></span></td><td class="why-col">Opens adductors and hip abductors — limits roundhouse and side kick height if tight</td></tr>
+                <tr><td><span class="ex-name">World's Greatest Stretch</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">5/side</span></span></td><td class="why-col">Hip flexor, thoracic rotation, ankle mobility in one movement</td></tr>
+                <tr><td><span class="ex-name">90/90 Transitions</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">10</span></span></td><td class="why-col">Hip internal/external rotation — used in every roundhouse pivot and scramble</td></tr>
+                <tr><td><span class="ex-name">Cossack Squats</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">8/side</span></span></td><td class="why-col">Strengthens adductors through full range — prevents groin pulls on explosive kicks</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="session-block">
+          <div class="session-block-label" style="color:#a78bfa">Active Flexibility — Priority <span class="dur">Most important</span></div>
+          <div class="table-wrap">
+            <table class="ex-table">
+              <tbody>
+                <tr><td><span class="ex-name">Roundhouse Chamber Hold</span></td><td><span class="sr-stack"><span class="sr-sets">3 SETS</span><span class="sr-reps">15–20s/side</span></span></td><td class="why-col">Highest-value drill for head kicks. Hold your kick at head height — if you can hold 20s, you can throw it in a fight</td></tr>
+                <tr><td><span class="ex-name">Front Kick Chamber Hold</span></td><td><span class="sr-stack"><span class="sr-sets">3 SETS</span><span class="sr-reps">15–20s/side</span></span></td><td class="why-col">Hip flexor strength at end range — exact position of a teep or front kick to the face</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="session-block">
+          <div class="session-block-label">Static Flexibility <span class="dur">~6 min</span></div>
+          <div class="table-wrap">
+            <table class="ex-table">
+              <tbody>
+                <tr><td><span class="ex-name">Half-Kneeling Hip Flexor Stretch</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">45s/side</span></span></td><td class="why-col">Tight hip flexors are the #1 limiter of kick height</td></tr>
+                <tr><td><span class="ex-name">Side Split Progression Hold</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">45s</span></span></td><td class="why-col">Long-term adductor flexibility — never force past tolerance, progress weekly</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <p class="note">9 exercises · 15–20 min. Don't rush the chamber holds — they're the most important part of this block.</p>
+    </div>
+
+    <div class="mob-group">
+      <div class="mob-day-label">Saturday — MMA Movement Quality</div>
+      <div class="mob-day-sub">10–15 min · Low intensity · Pre-boxing prep</div>
+
+      <div class="session-card">
+        <div class="session-block">
+          <div class="session-block-label" style="color:#5daf5d">MMA Movement Drills <span class="dur">Do with intention</span></div>
+          <div class="table-wrap">
+            <table class="ex-table">
+              <tbody>
+                <tr><td><span class="ex-name">Hip CARs</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">5/side</span></span></td><td class="why-col">Full hip joint range under neural control — prevents tightening from heavy lifting and boxing</td></tr>
+                <tr><td><span class="ex-name">Technical Stand-Up</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">10</span></span></td><td class="why-col">Most transferable MMA movement. You will end up on the ground — this makes standing back up instinctive</td></tr>
+                <tr><td><span class="ex-name">Shrimping</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">10/side</span></span></td><td class="why-col">Core MMA survival skill. Sloppy reps build sloppy escapes in fights</td></tr>
+                <tr><td><span class="ex-name">Sprawls</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">10</span></span></td><td class="why-col">Takedown defence — drilling fresh on Saturday makes it automatic when exhausted</td></tr>
+                <tr><td><span class="ex-name">Bear Crawl</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">10m</span></span></td><td class="why-col">Shoulder stability, hip mobility, coordination — the pattern of cage work and scrambles</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="session-block">
+          <div class="session-block-label">Static Recovery <span class="dur">~5 min</span></div>
+          <div class="table-wrap">
+            <table class="ex-table">
+              <tbody>
+                <tr><td><span class="ex-name">Deep Squat Hold</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">30s</span></span></td><td class="why-col">Ankle, hip, groin mobility — resets hips for Wednesday's squat pattern</td></tr>
+                <tr><td><span class="ex-name">Pigeon Stretch</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">45s/side</span></span></td><td class="why-col">Glute and external hip rotator stretch — reduces tightness from deadlifts and footwork</td></tr>
+                <tr><td><span class="ex-name">Hamstring Stretch</span></td><td><span class="sr-stack"><span class="sr-sets">2 SETS</span><span class="sr-reps">45s/side</span></span></td><td class="why-col">Limits kick height when tight — Saturday is ideal since you don't lift until Wednesday</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <p class="note">8 exercises · 10–15 min. Low intensity by design — you box tomorrow.</p>
+    </div>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- PROGRESSION -->
+  <div class="section" id="progression">
+    <span class="eyebrow">06 — How to Progress</span>
+    <h2 class="section-title compact">Progression Model</h2>
+    <div class="table-wrap" style="padding:0">
+      <table class="prog-table">
+        <thead><tr><th>Week</th><th>Weight</th><th>Reps per set</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>30kg DBs</td><td>6, 6, 6, 6</td><td style="color:var(--grey)">Stay here</td></tr>
+          <tr><td>2</td><td>30kg DBs</td><td>7, 7, 7, 7</td><td style="color:var(--grey)">Stay here</td></tr>
+          <tr><td>3</td><td>30kg DBs</td><td>8, 8, 8, 8</td><td style="color:var(--gold)">Hit top reps — increase weight</td></tr>
+          <tr><td>4</td><td>32.5kg DBs</td><td>6, 6, 6, 6</td><td style="color:var(--grey)">Cycle repeats</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Apply to: Trap Bar Deadlift · Hack Squat / Leg Press · Pull-Ups · Flat DB Bench Press · Incline DB Press · Chest-Supported / Barbell Row</p>
+    <div class="phase-row">
+      <div class="phase-col"><div class="phase-num">PHASE 01</div><div class="phase-kg">64–65 kg</div><div class="phase-time">Months 1–4</div></div>
+      <div class="phase-col"><div class="phase-num">PHASE 02</div><div class="phase-kg">67–69 kg</div><div class="phase-time">Months 5–10</div></div>
+      <div class="phase-col"><div class="phase-num">PHASE 03</div><div class="phase-kg">74–77 kg</div><div class="phase-time">Months 11–18</div></div>
+    </div>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- NUTRITION -->
+  <div class="section" id="nutrition">
+    <span class="eyebrow">07 — Fuel & Recovery</span>
+    <h2 class="section-title compact">The Non-Negotiables</h2>
+    <div class="nutr-list">
+      <div class="nutr-row"><span class="label">Sleep</span><span class="val">8–9 hours</span></div>
+      <div class="nutr-row"><span class="label">Total daily calories</span><span class="val">2,900–3,100 kcal</span></div>
+      <div class="nutr-row"><span class="label">Calorie surplus</span><span class="val">+250–300 kcal</span></div>
+      <div class="nutr-row"><span class="label">Protein</span><span class="val">130–150g / day</span></div>
+      <div class="nutr-row"><span class="label">Carbohydrates</span><span class="val">350–400g / day</span></div>
+      <div class="nutr-row"><span class="label">Fats</span><span class="val">80–100g / day</span></div>
+      <div class="nutr-row"><span class="label">Water</span><span class="val">3+ litres / day</span></div>
+      <div class="nutr-row"><span class="label">Creatine</span><span class="val">5g daily</span></div>
+      <div class="nutr-row"><span class="label">Steps</span><span class="val">6,000–10,000 / day</span></div>
+      <div class="nutr-row"><span class="label">Weigh-in</span><span class="val">Every morning, fasted</span></div>
+    </div>
+    <p class="note">Eat protein + carbs within 90 minutes before and after every session. Push calories higher on boxing days.</p>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- RULES -->
+  <div class="section" id="rules">
+    <span class="eyebrow">08 — Guidelines</span>
+    <h2 class="section-title compact">Keep It Simple</h2>
+    <ul class="rules-list">
+      <li><span class="rule-marker">—</span>Never fail a rep on compound lifts — leave 1–2 in the tank always</li>
+      <li><span class="rule-marker">—</span>Explosive finishers are optional — skip if combat sessions left you fatigued</li>
+      <li><span class="rule-marker">—</span>Neck training capped at 2 exercises per week — more creates tightness that hurts striking</li>
+      <li><span class="rule-marker">—</span>Friday finish by evening — you need Saturday to recover before Sunday boxing</li>
+      <li><span class="rule-marker">—</span>Don't add extra gym days — your combat classes already tax your recovery</li>
+      <li><span class="rule-marker">—</span>Months 1–2: learn the movements at moderate weight. Month 3+: push hard</li>
+      <li><span class="rule-marker">—</span>Track every lift — write the weight and reps down after every set</li>
+      <li><span class="rule-marker">—</span>Gain weight slowly — 0.25kg/week max keeps it lean, not fat</li>
+    </ul>
+
+    <div class="why-box" style="margin-top:20px">
+      <p><strong>If you miss a session:</strong> Just resume the normal rhythm next week — don't double up or stack workouts to "catch up." One missed session costs almost nothing over 16–18 months. If weight or reps slip, simply resume at your last logged number.</p>
+      <p style="margin-top:10px"><strong>Every 8–12 weeks, reassess:</strong> Take a deload week at ~60% weight, normal reps. Retest your top lifts over 1–2 sessions to find new working weights, then restart the progression model. Use this checkpoint to review bodyweight progress and swap out anything causing joint pain or a stuck plateau.</p>
+    </div>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- OBJECTIVE -->
+  <div class="section" id="objective">
+    <span class="eyebrow">09 — Purpose</span>
+    <h2 class="section-title compact">What This Program Is & Isn't</h2>
+    <div class="why-box">
+      <p>This is not a bodybuilding program. It is not a powerlifting program. It is a <strong>combat athlete full-body strength program</strong> — designed for someone who already trains kickboxing and boxing twice a week and needs the gym to complement, not compete with, those sessions.</p>
+      <p>The objective: <strong>add lean muscle mass and maximal strength to a long-limbed, 61kg combat athlete without impairing striking performance, speed, or recovery.</strong></p>
+    </div>
+    <div class="obj-grid">
+      <div class="obj-col do">
+        <div class="obj-col-title">What it does</div>
+        <ul>
+          <li>Trains every muscle group twice per week</li>
+          <li>Builds total-body strength through compound lifts</li>
+          <li>Adds functional muscle mass to long levers</li>
+          <li>Develops structural armour — neck, traps, forearms</li>
+          <li>Trains explosive power without conditioning fatigue</li>
+          <li>Protects shoulders, spine, and joints long-term</li>
+        </ul>
+      </div>
+      <div class="obj-col dont">
+        <div class="obj-col-title">What it doesn't do</div>
+        <ul>
+          <li>Chase hypertrophy at the cost of recovery</li>
+          <li>Add volume that bleeds into combat days</li>
+          <li>Prioritise aesthetics over athletic function</li>
+          <li>Include conditioning that competes with boxing</li>
+          <li>Train to failure on heavy lifts</li>
+          <li>Stack posterior chain fatigue session-over-session</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- SCIENCE -->
+  <div class="section" id="science">
+    <span class="eyebrow">10 — Physics & Science</span>
+    <h2 class="section-title compact">Why Size Matters in Combat</h2>
+    <p style="font-size:13.5px;color:var(--grey);margin-bottom:8px;line-height:1.7">Size in combat sports is not vanity — it is physics. Every principle below is backed by classical mechanics.</p>
+
+    <div class="sci-item">
+      <div class="sci-head"><span class="sci-num">01</span><div class="sci-title-group"><div class="sci-title">Force = Mass × Acceleration</div><div class="sci-sub">Newton's Second Law</div></div></div>
+      <span class="sci-formula">F = m × a</span>
+      <p class="sci-body">A punch is a force. If you throw a cross at the same speed but weigh 76kg instead of 61kg, the force at the end of that fist is proportionally greater. More muscle fibres recruited = higher acceleration AND higher effective mass — both increase simultaneously. This is why heavier fighters hit harder even at identical technique.</p>
+    </div>
+
+    <div class="sci-item">
+      <div class="sci-head"><span class="sci-num">02</span><div class="sci-title-group"><div class="sci-title">Kinetic Energy</div><div class="sci-sub">The Energy in Every Strike</div></div></div>
+      <span class="sci-formula">KE = ½ × m × v²</span>
+      <p class="sci-body">Velocity is squared — speed matters enormously, which is why you must not sacrifice it for size. But mass still multiplies everything. A punch at 10m/s with 5kg effective mass carries 250 joules; with 6kg it carries 300 joules — a 20% increase in destructive energy for a 20% increase in mass.</p>
+    </div>
+
+    <div class="sci-item">
+      <div class="sci-head"><span class="sci-num">03</span><div class="sci-title-group"><div class="sci-title">Momentum</div><div class="sci-sub">Why Bigger Fighters Are Harder to Stop</div></div></div>
+      <span class="sci-formula">p = m × v</span>
+      <p class="sci-body">At 61kg, even moving aggressively, a 75kg opponent at the same speed carries 23% more momentum. Your target of 74–77kg levels that equation entirely. Adding 13–16kg of lean mass transforms your clinch control and ability to absorb and redirect incoming force.</p>
+    </div>
+
+    <div class="sci-item">
+      <div class="sci-head"><span class="sci-num">04</span><div class="sci-title-group"><div class="sci-title">Impulse & Impact Force</div><div class="sci-sub">How Hard You Can Take a Shot</div></div></div>
+      <span class="sci-formula">F = Δp / Δt</span>
+      <p class="sci-body">A thick, strong neck increases Δt — slowing the rate of head movement by absorbing energy in muscle tissue rather than transmitting it instantly to the brain. Same principle as a crumple zone on a car. Lean mass also increases your body's total inertia, making you harder to move, hurt, and finish.</p>
+    </div>
+
+    <div class="sci-item">
+      <div class="sci-head"><span class="sci-num">05</span><div class="sci-title-group"><div class="sci-title">Rotational Power & Torque</div><div class="sci-sub">Where Punching Power Really Comes From</div></div></div>
+      <span class="sci-formula">τ = r × F</span>
+      <p class="sci-body">Every punch is a rotational movement. With your long arms (82cm) and legs (106cm), your natural radius is exceptionally large. Even modest force increases from stronger glutes and hips produce disproportionately large torque at the end of your limbs. Your body type is an advantage — this program weaponises it.</p>
+    </div>
+
+    <div class="sci-item">
+      <div class="sci-head"><span class="sci-num">06</span><div class="sci-title-group"><div class="sci-title">Your Sweet Spot</div><div class="sci-sub">Size Without Losing Speed</div></div></div>
+      <span class="sci-formula">74–77kg</span>
+      <p class="sci-body">Lean muscle does NOT slow you down. Excess body fat does. Strength training improves Rate of Force Development — muscles fire faster, not slower. At 181cm, 74–77kg is your optimal power-to-weight band.</p>
+      <ul class="sci-bullets">
+        <li>Strength training improves RFD — muscles fire faster, not slower</li>
+        <li>Lean mass at 0.25kg/week adds almost no adipose tissue</li>
+        <li>Stronger glutes and hips = more explosive hip rotation = faster punches</li>
+      </ul>
+      <p class="sci-body" style="margin-top:14px">Past 80kg the math flips. Muscle is metabolically expensive — more tissue means more oxygen demand, but your heart's stroke volume stays fixed. You end up diluting oxygen delivery rather than improving it, so you gas faster and slow down in later rounds. 74–77kg is the ceiling where added mass still pays for itself.</p>
+    </div>
+
+    <div class="sci-item">
+      <div class="sci-head"><span class="sci-num">07</span><div class="sci-title-group"><div class="sci-title">The Neck — KO Shield</div><div class="sci-sub">Why Neck Thickness Saves You</div></div></div>
+      <span class="sci-formula">α = τ / I</span>
+      <p class="sci-body">A KO happens when the brain rotates rapidly inside the skull. A thick neck dramatically increases moment of inertia — so the same punch produces less head rotation, less brain movement, less shearing on neural tissue. Fighters with stronger necks absorb significantly higher impact before cognitive disruption.</p>
+    </div>
+
+    <div class="sci-item">
+      <div class="sci-head"><span class="sci-num">08</span><div class="sci-title-group"><div class="sci-title">Thick Forearms — Weapons & Shields</div><div class="sci-sub">Stress Distribution · Impact Absorption</div></div></div>
+      <span class="sci-formula">σ = F / A</span>
+      <p class="sci-body">More forearm cross-section = less stress per unit of tissue = safer, more rigid striking platform. Thick forearms also absorb incoming blocks — in kickboxing, your forearm IS the shield. Grip strength from thick forearms dominates clinch exchanges and prevents wrist injuries.</p>
+    </div>
+
+    <div class="sci-item">
+      <div class="sci-head"><span class="sci-num">09</span><div class="sci-title-group"><div class="sci-title">Why It Matters for Future MMA</div><div class="sci-sub">Leverage & The Long-Limb Problem</div></div></div>
+      <span class="sci-formula">τ = r × F</span>
+      <p class="sci-body">The same long limbs that win you reach on the feet work against you on the mat by default — torque equals lever length times force, so an opponent gripping your wrist or ankle has a longer lever to control, and at 61kg you currently lack the force to resist it. This program closes that gap early: trap bar deadlifts, pull-ups, and farmer's carries build the grip and full-body tension needed to resist control at range, so your reach becomes an advantage in both phases once grappling enters the picture.</p>
+    </div>
+  </div>
+
+  <div class="section-gap"></div>
+
+  <!-- WEEKLY LOG -->
+  <div class="section log-section" id="weekly-log">
+    <span class="eyebrow">11 — Print</span>
+    <h2 class="section-title compact">Weekly Training Log</h2>
+    <div class="why-box no-print">
+      <p><strong>How to use this:</strong> Print this page (Ctrl/Cmd + P) and bring it to the gym. Log weight and reps for each set. Track bodyweight every morning.</p>
+    </div>
+
+    <div class="log-week-input no-print">
+      <div class="log-input-group">
+        <span class="log-input-label">Week of</span>
+        <span class="log-input-line"></span>
+      </div>
+      <div class="log-input-group">
+        <span class="log-input-label">Bodyweight</span>
+        <span class="log-input-line short"></span>
+        <span class="log-input-unit">kg</span>
+      </div>
+    </div>
+
+    <div class="session-card" style="margin-bottom:14px">
+      <div class="session-block">
+        <div class="session-block-label accent" style="padding-bottom:14px">Wednesday — Gym A <span class="dur">Hinge Day</span></div>
+        <div class="table-wrap" style="padding:0 0 14px">
+          <table class="log-table">
+            <thead>
+              <tr><th>Exercise</th><th>Target</th><th>Set 1</th><th>Set 2</th><th>Set 3</th><th>Set 4</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="ex-cell">Trap Bar Deadlift</td><td>4×5</td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td class="ex-cell">Bulgarian Split Squat</td><td>3×8/leg</td><td></td><td></td><td></td><td>—</td><td></td></tr>
+              <tr><td class="ex-cell">Flat DB Bench Press</td><td>4×6–8</td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td class="ex-cell">Pull-Ups</td><td>4×6–10</td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td class="ex-cell">Neck Flexion</td><td>2×15</td><td></td><td></td><td>—</td><td>—</td><td></td></tr>
+              <tr><td class="ex-cell">Farmer's Carry</td><td>3×30–40m</td><td></td><td></td><td></td><td>—</td><td></td></tr>
+              <tr><td class="ex-cell" style="color:var(--grey);font-style:italic">Finisher</td><td>3 sets</td><td></td><td></td><td></td><td>—</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="session-card" style="margin-bottom:14px">
+      <div class="session-block">
+        <div class="session-block-label accent" style="padding-bottom:14px">Friday — Gym B <span class="dur">Squat Day</span></div>
+        <div class="table-wrap" style="padding:0 0 14px">
+          <table class="log-table">
+            <thead>
+              <tr><th>Exercise</th><th>Target</th><th>Set 1</th><th>Set 2</th><th>Set 3</th><th>Set 4</th><th>Notes</th></tr>
+            </thead>
+            <tbody>
+              <tr><td class="ex-cell">Hack Squat / Leg Press</td><td>4×8–10</td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td class="ex-cell">DB Romanian Deadlift</td><td>3×10</td><td></td><td></td><td></td><td>—</td><td></td></tr>
+              <tr><td class="ex-cell">Incline DB Press</td><td>4×8–10</td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td class="ex-cell">Chest-Supported Row / Barbell Row</td><td>4×10</td><td></td><td></td><td></td><td></td><td></td></tr>
+              <tr><td class="ex-cell">Lateral Neck Raise</td><td>2×12/side</td><td></td><td></td><td>—</td><td>—</td><td></td></tr>
+              <tr><td class="ex-cell">Hammer Curl</td><td>3×10–12</td><td></td><td></td><td></td><td>—</td><td></td></tr>
+              <tr><td class="ex-cell">Wrist Curl + Reverse</td><td>2×15</td><td></td><td></td><td>—</td><td>—</td><td></td></tr>
+              <tr><td class="ex-cell" style="color:var(--grey);font-style:italic">Finisher</td><td>3 sets</td><td></td><td></td><td></td><td>—</td><td></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="session-card">
+      <div class="session-block">
+        <div class="session-block-label" style="color:#5daf5d;padding-bottom:14px">Bodyweight <span class="dur">7-Day Tracker</span></div>
+        <div class="table-wrap" style="padding:0 0 14px">
+          <table class="log-table">
+            <thead>
+              <tr><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th><th>Sun</th><th>Avg</th></tr>
+            </thead>
+            <tbody><tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td style="color:var(--gold);font-weight:600"></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px;text-align:right" class="no-print">
+      <button onclick="window.print()" class="print-btn">🖨&nbsp; Print Log</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>Built for combat · Full Body 2×/Week · 181cm · Long limbs · Short torso · Kickboxing + Boxing</footer>
+<script>
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js'); }
+</script>
+</body>
+</html>

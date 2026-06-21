@@ -1,0 +1,12 @@
+{
+  "name": "Built to Fight — Combat Strength Program",
+  "short_name": "Combat",
+  "description": "Combat athlete strength program — full body 2x/week, built for kickboxing and boxing.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0d0d",
+  "theme_color": "#0d0d0d",
+  "icons": []
+}
